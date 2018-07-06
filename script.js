@@ -4,10 +4,32 @@ const renderPlayer = () => {
   playerElement.style.left = '0px';
   playerElement.style.top = '0px';
   document.querySelector('.gameBoard').appendChild(playerElement);
-
+  
 }
 
 renderPlayer();
+
+const walls = [
+  {x: 0, y: 3},
+  {x: 1, y: 1},
+  {x: 2, y: 4},
+  {x: 3, y: 1},
+  {x: 4, y: 2},
+  
+];
+
+const renderWall = () => {
+  for (let i = 0; i < walls.length; i++) {
+    const wall = walls[i];
+    const wallElement = document.createElement ('div');
+    wallElement.className = 'walls';
+    wallElement.style.left = (wall.x * 100).toString() + 'px';
+    wallElement.style.top = (wall.y * 100).toString() + 'px';
+    document.querySelector ('.gameBoard').appendChild(wallElement);
+  }
+};
+
+renderWall();
 
 
 document.body.addEventListener('keydown',evt =>{
@@ -15,10 +37,9 @@ document.body.addEventListener('keydown',evt =>{
   if ([37, 38, 39, 40].includes(keyCode)) {
     evt.preventDefault();
   }
-
-
   switch (keyCode) {
     case 37:
+    console.log('left');
     moveLeft();
     break;
     case 38:
@@ -66,14 +87,6 @@ const moveDown = () => {
 }
 
 
-const walls = [
-  {x: 0, y: 3},
-  {x: 1, y: 1},
-  {x: 2, y: 4},
-  {x: 3, y: 1},
-  {x: 4, y: 2},
-  
-];
 
 
 const isThereAWall = (x, y) => {
@@ -81,27 +94,11 @@ const isThereAWall = (x, y) => {
   for (let i = 0; i < walls.length; i++) {
     const wall = walls[i];
     if (wall.x === x && wall.y === y) {
-      return false;
+      return true;
     }
   }
-  return true;
+  return false;
 };
-
-const renderWalls = () => {
-  for (let i = 0; i < walls.length; i++) {
-    const wall = walls[i];
-    const wallElement = document.createElement('div');
-    wallElement.className = 'wall';
-    // Multiply the x,y coordinates by 100 because each grid square
-    // is 100x100 pixels in size.
-    wallElement.style.left = (wall.x * 100).toString() + 'px';
-    wallElement.style.top = (wall.y * 100).toString() + 'px';
-    document.querySelector('.board').appendChild(wallElement);
-  }
-};
-renderWalls();
-
-
 const canMoveTo = (x,y) => {
   if (!isCoordinateInGrid(x,y)) {
     return false;
@@ -111,8 +108,6 @@ const canMoveTo = (x,y) => {
     }
   return true;
   }
-
-
 
   const isCoordinateInGrid = (x,y) => {
     if (x < 0 || y < 0 || x > 4 || y > 4){
@@ -127,3 +122,9 @@ const canMoveTo = (x,y) => {
     character.style.top = (y * 100).toString() + 'px';
     character.style.left = (x * 100).toString() + 'px';
   }
+
+  // const isThereAWall = (x, y) => {
+  //   const character =document.querySelector('.walls');
+  //   character.style.top = (y * 100).toString() + 'px';
+  //   character.style.left = (x * 100).toString() + 'px';
+  // }
