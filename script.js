@@ -32,6 +32,33 @@ const renderWall = () => {
 renderWall();
 
 
+const beers = [
+  {x: 0, y: 2},
+  {x: 2, y: 1},
+  {x: 3, y: 4},
+];
+
+
+const renderBeer = () => {
+  const beerElement =document.querySelectorAll('.beers');
+  console.log
+  for (let j = 0; j < beerElement.length; j++) {
+    beerElement[j].remove();
+    console.log('beer removed')
+  }
+
+  for (let i = 0; i < beers.length; i++) {
+    const beer = beers[i];
+    const beerElement = document.createElement ('div');
+    beerElement.className = 'beers';
+    beerElement.style.left = (beer.x * 100).toString() + 'px';
+    beerElement.style.top = (beer.y * 100).toString() + 'px';
+    document.querySelector ('.gameBoard').appendChild(beerElement);
+  }
+};
+
+renderBeer();
+
 document.body.addEventListener('keydown',evt =>{
   const keyCode = evt.keyCode;
   if ([37, 38, 39, 40].includes(keyCode)) {
@@ -39,7 +66,7 @@ document.body.addEventListener('keydown',evt =>{
   }
   switch (keyCode) {
     case 37:
-    console.log('left');
+    
     moveLeft();
     break;
     case 38:
@@ -121,10 +148,36 @@ const canMoveTo = (x,y) => {
     const character = document.querySelector('.player');
     character.style.top = (y * 100).toString() + 'px';
     character.style.left = (x * 100).toString() + 'px';
+    if (isThereABeer(x,y)) {
+      removeBeer(x,y);
+      renderBeer();
+      console.log("beers")
+    }
   }
 
-  // const isThereAWall = (x, y) => {
-  //   const character =document.querySelector('.walls');
-  //   character.style.top = (y * 100).toString() + 'px';
-  //   character.style.left = (x * 100).toString() + 'px';
-  // }
+
+    // check for beers at the coordinate 
+    const isThereABeer = (x, y) => {
+      for (let i = 0; i < beers.length; i++) {
+        const beer = beers[i];
+        if (beer.x === x && beer.y === y) {
+          removeBeer()
+          return true;
+        }
+      }
+      return false;
+    };
+    
+    var score = 0;
+    
+    const removeBeer = (x, y) => {
+      for (let i = 0; i < beers.length; i++) {
+        const beer = beers[i];
+        if (beer.x === x && beer.y === y) {
+          beers.splice(i, 1);
+          renderBeer();
+        score +=1;
+          console.log(score);
+        }
+      }
+    };
