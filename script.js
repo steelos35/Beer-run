@@ -1,3 +1,6 @@
+const player = {
+  x:0 , y:0
+}
 const renderPlayer = () => {
   const playerElement =  document.createElement('div');
   playerElement.className = 'player';
@@ -8,6 +11,7 @@ const renderPlayer = () => {
 }
 
 renderPlayer();
+
 
 const walls = [
   {x: 0, y: 3},
@@ -44,7 +48,7 @@ const renderBeer = () => {
   console.log
   for (let j = 0; j < beerElement.length; j++) {
     beerElement[j].remove();
-    console.log('beer removed')
+    console.log('wooohoo!!')
   }
 
   for (let i = 0; i < beers.length; i++) {
@@ -58,6 +62,22 @@ const renderBeer = () => {
 };
 
 renderBeer();
+
+
+const home = 
+{x:4, y:4 }
+
+
+const renderHome = () => {
+  const homeElement =  document.createElement('div');
+  homeElement.className = 'home';
+  homeElement.style.right = '0px';
+  homeElement.style.bottom = '0px';
+  document.querySelector('.gameBoard').appendChild(homeElement);
+}
+renderHome();
+
+
 
 document.body.addEventListener('keydown',evt =>{
   const keyCode = evt.keyCode;
@@ -82,9 +102,6 @@ document.body.addEventListener('keydown',evt =>{
   }
 })
 
-const player = {
-  x:0 , y:0
-}
 
 const moveLeft = () => {
   if (canMoveTo(player.x - 1, player.y)) {
@@ -114,6 +131,13 @@ const moveDown = () => {
 }
 
 
+const isCoordinateInGrid = (x,y) => {
+  if (x < 0 || y < 0 || x > 4 || y > 4){
+    return false;
+
+  }
+  return true;
+}
 
 
 const isThereAWall = (x, y) => {
@@ -126,23 +150,72 @@ const isThereAWall = (x, y) => {
   }
   return false;
 };
+// check for beers at the coordinate 
+
 const canMoveTo = (x,y) => {
   if (!isCoordinateInGrid(x,y)) {
     return false;
   }
-    if (isThereAWall(x,y)) {
-      return false;
-    }
-  return true;
+  if (isThereAWall(x,y)) {
+    return false;
   }
+  if (isThisHome(x,y) && score < 3){
+    return false;
+  }
+  return true;
+}
 
-  const isCoordinateInGrid = (x,y) => {
-    if (x < 0 || y < 0 || x > 4 || y > 4){
-      return false;
+var score = 0;
 
+const removeBeer = (x, y) => {
+  for (let i = 0; i < beers.length; i++) {
+    const beer = beers[i];
+    if (beer.x === x && beer.y === y) {
+      beers.splice(i, 1);
+      renderBeer();
+    score +=1;
+      
     }
+  
+    
+  }
+};
+
+const isThereABeer = (x, y) => {
+  for (let i = 0; i < beers.length; i++) {
+    const beer = beers[i];
+    if (beer.x === x && beer.y === y) {
+      removeBeer()
+      return true;
+    }
+  }
+  return false;
+};
+
+
+const isThisHome = (x,y) => {
+  if (home.x === x && home.y === y) {
+    removeBeer()
     return true;
   }
+}
+
+
+
+const displayWinMessage = () => {
+  // Only display one win message.
+  if (document.querySelector('.win-message') !== null) {
+    return;
+  }
+  const winMessageElement = document.createElement('div');
+  winMessageElement.className = 'win-message';
+  winMessageElement.innerHTML = 'Home Safe!!!';
+  document.querySelector('.gameBoard').appendChild(winMessageElement);
+};
+console.log('game-over')
+
+
+
 
   const movePlayerTo = (x,y) => {
     const character = document.querySelector('.player');
@@ -151,33 +224,12 @@ const canMoveTo = (x,y) => {
     if (isThereABeer(x,y)) {
       removeBeer(x,y);
       renderBeer();
-      console.log("beers")
     }
-  }
-
-
-    // check for beers at the coordinate 
-    const isThereABeer = (x, y) => {
-      for (let i = 0; i < beers.length; i++) {
-        const beer = beers[i];
-        if (beer.x === x && beer.y === y) {
-          removeBeer()
-          return true;
-        }
+     if (isThisHome(x,y) && score === 3) {
+        displayWinMessage();
       }
-      return false;
-    };
+      
+    }
     
-    var score = 0;
+  
     
-    const removeBeer = (x, y) => {
-      for (let i = 0; i < beers.length; i++) {
-        const beer = beers[i];
-        if (beer.x === x && beer.y === y) {
-          beers.splice(i, 1);
-          renderBeer();
-        score +=1;
-          console.log(score);
-        }
-      }
-    };

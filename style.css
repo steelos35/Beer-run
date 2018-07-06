@@ -57,15 +57,40 @@ h1 {
         background-image: url(/Users/albertsalazar/beer-run/images/Beer_mug.svg.png);
     
     }
-      
-      
 
+    .home {
+        width: 100px;
+        height: 100px;
+        border-radius: 30%;
+        background-color: black;
+        position: absolute;
+        background-size: cover;
+        background-image:url(/Users/albertsalazar/beer-run/images/beer_home.jpeg);
+    }      
       
-      .wrapper {
+    .win-message {
+        position: absolute;
+        width: 400px;
+        top: 150px;
+        background-color: rgba(255,255,255,0.75);
+        font-family: 'Inconsolata', monospace;
+        text-align: center;
+        font-weight: 700;
+        font-size: 4rem;
+      }
+      
+      .CodeMirror {
+        line-height: 1.25;
+        height: auto;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      /* .wrapper {
         width: 600px;
         display: grid;
         grid-gap: 10px;
         grid-template-columns: repeat(6, 100px);
         grid-template-rows: 100px 100px 100px;
         grid-auto-flow: column;
-      }
+      } */
