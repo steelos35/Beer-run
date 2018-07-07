@@ -1,17 +1,71 @@
 
-h1 {
-    width: 20%;
+
+.center {
+    margin: auto;
+    width: 39%;
+    border: 3px solid yellow;
+    padding: 30px 4px;
     font-family: 'Rye', cursive;
     background-color: rgba(255, 255, 0, 0.911);
-    text-align: center;
-    overflow: auto;
+    height: 15%;
+    font-size: 75px;
+   
+}
+h1 {
+    margin: 0; 
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+   
+
+  
     }
 
-    body {
-        margin: 40px;
-      }
+body {
+        /* margin: 40px; */
+        background-image: url(/Users/albertsalazar/beer-run/images/cartoon-city4.jpeg);
+        background-repeat: no-repeat;
+        /* height: 100%;  */
+        
+        /* Center and scale the image nicely */
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        background-color: #464646;
+        text-align: center; 
+        text-decoration: none;
+        margin: 0;
+    }
 
-      .box {
+    nav {
+        background-color: rgb(147, 160, 161);
+        color: #FFFFFF;
+        padding: 30px 40px;
+        display: inline-block;
+        list-style-type: none;
+        /*margin: 0; 
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%; */
+}
+
+a {
+    font-family: Raleway;
+    color: #FFFFFF;
+    /*color:F15B31;*/
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0px 20px;
+    border-bottom: 2px solid transparent;
+
+}
+
+
+.box {
           background-color: #444;
           color: #fff;
           border-radius: 5px;
@@ -21,7 +75,7 @@ h1 {
         
         
         
-        .win-message {
+.win-message {
             /* position: fixed;
             width: 1400px;
             top: 150px;
@@ -42,15 +96,18 @@ h1 {
         }
 
 
-
-      .gameBoard {
-        position: absolute;
+.gameBoard {
+        position: relative;
         width: 500px;
         height: 500px;
         background-color: grey;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto
     }
     
-    .player {
+.player {
         width: 90px;
         height: 90px;
         border-radius: 30%;
@@ -60,7 +117,7 @@ h1 {
         background-image: url(/Users/albertsalazar/beer-run/images/beer_drinker.jpeg);
     }
     
-    .walls {
+.walls {
         width: 100px;
         height: 100px;
         border-radius: 30%;
@@ -71,7 +128,7 @@ h1 {
     
     }
     
-    .beers {
+.beers {
         width: 100px;
         height: 100px;
         border-radius: 30%;
@@ -82,7 +139,7 @@ h1 {
     
     }
 
-    .home {
+.home {
         width: 100px;
         height: 100px;
         border-radius: 30%;
@@ -93,7 +150,7 @@ h1 {
     }      
       
       
-      .CodeMirror {
+.CodeMirror {
         line-height: 1.25;
         height: auto;
         padding: 0.5rem;
