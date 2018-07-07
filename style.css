@@ -11,13 +11,37 @@ h1 {
         margin: 40px;
       }
 
-    .box {
-        background-color: #444;
-        color: #fff;
-        border-radius: 5px;
-        padding: 20px;
-        font-size: 150%;
-      }
+      .box {
+          background-color: #444;
+          color: #fff;
+          border-radius: 5px;
+          padding: 20px;
+          font-size: 150%;
+        }
+        
+        
+        
+        .win-message {
+            /* position: fixed;
+            width: 1400px;
+            top: 150px;
+            background-color: rgba(255,255,255,0.75);
+            font-family: 'Inconsolata', monospace;
+            text-align: center;
+            font: white;
+            font-weight: 700;
+            font-size: 4rem;
+            background-image: url(/Users/albertsalazar/beer-run/images/game-over.png);
+          } */
+        position: relative;
+        width: 100%;
+        height: 800px;
+        background-image: url(/Users/albertsalazar/beer-run/images/game-over.png);
+        background-repeat: no-repeat;
+        background-size: 100% 65%;
+        }
+
+
 
       .gameBoard {
         position: absolute;
@@ -62,22 +86,12 @@ h1 {
         width: 100px;
         height: 100px;
         border-radius: 30%;
-        background-color: black;
+        /* background-color: black; */
         position: absolute;
         background-size: cover;
         background-image:url(/Users/albertsalazar/beer-run/images/beer_home.jpeg);
     }      
       
-    .win-message {
-        position: absolute;
-        width: 400px;
-        top: 150px;
-        background-color: rgba(255,255,255,0.75);
-        font-family: 'Inconsolata', monospace;
-        text-align: center;
-        font-weight: 700;
-        font-size: 4rem;
-      }
       
       .CodeMirror {
         line-height: 1.25;

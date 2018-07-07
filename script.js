@@ -209,10 +209,10 @@ const displayWinMessage = () => {
   }
   const winMessageElement = document.createElement('div');
   winMessageElement.className = 'win-message';
-  winMessageElement.innerHTML = 'Home Safe!!!';
+  winMessageElement.innerHTML = '';
   document.querySelector('.gameBoard').appendChild(winMessageElement);
 };
-console.log('game-over')
+
 
 
 
@@ -231,5 +231,6 @@ console.log('game-over')
       
     }
     
-  
+
+ 
     
