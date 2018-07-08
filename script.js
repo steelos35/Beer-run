@@ -16,10 +16,26 @@ renderPlayer();
 const walls = [
   {x: 0, y: 3},
   {x: 1, y: 1},
+  {x: 2, y: 3},
   {x: 2, y: 4},
-  {x: 3, y: 1},
-  {x: 4, y: 2},
-  
+  {x: 3, y: 0},
+  {x: 3, y: 2},
+  {x: 4, y: 3},
+  {x: 5, y: 0},
+  {x: 5, y: 1},
+  {x: 6, y: 3},
+  {x: 6, y: 4},
+  {x: 7, y: 1},
+  {x: 8, y: 2},
+  {x: 8, y: 3},
+  {x: 9, y: 0},
+  {x: 10, y: 2},
+  {x: 10, y: 3},
+  {x: 11, y: 0},
+  // {x: 11, y: 1},
+  // {x: 11, y: 2},
+  // {x: 11, y: 3},
+  // {x: 11, y: 4},
 ];
 
 const renderWall = () => {
@@ -37,9 +53,13 @@ renderWall();
 
 
 const beers = [
-  {x: 0, y: 2},
-  {x: 2, y: 1},
-  {x: 3, y: 4},
+  {x: 0, y: 4},
+  {x: 3, y: 3},
+  {x: 4, y: 0},
+  {x: 6, y: 1},
+  {x: 7, y: 4},
+  {x: 9, y: 2},
+  {x: 10, y: 0},
 ];
 
 
@@ -65,7 +85,7 @@ renderBeer();
 
 
 const home = 
-{x:4, y:4 }
+{x:11, y:4 };
 
 
 const renderHome = () => {
@@ -132,7 +152,7 @@ const moveDown = () => {
 
 
 const isCoordinateInGrid = (x,y) => {
-  if (x < 0 || y < 0 || x > 4 || y > 4){
+  if (x < 0 || y < 0 || x > 11 || y > 4){
     return false;
 
   }
@@ -159,11 +179,12 @@ const canMoveTo = (x,y) => {
   if (isThereAWall(x,y)) {
     return false;
   }
-  if (isThisHome(x,y) && score < 3){
+  if (isThisHome(x,y) && score < 7) {
     return false;
   }
   return true;
 }
+
 
 var score = 0;
 
@@ -202,6 +223,9 @@ const isThisHome = (x,y) => {
 
 
 
+
+
+
 const displayWinMessage = () => {
   // Only display one win message.
   if (document.querySelector('.win-message') !== null) {
@@ -211,26 +235,24 @@ const displayWinMessage = () => {
   winMessageElement.className = 'win-message';
   winMessageElement.innerHTML = '';
   document.querySelector('.gameBoard').appendChild(winMessageElement);
+  console.log('gameover')
+};
+
+const movePlayerTo = (x,y) => {
+  const character = document.querySelector('.player');
+  character.style.top = (y * 100).toString() + 'px';
+  character.style.left = (x * 100).toString() + 'px';
+  if (isThereABeer(x,y)) {
+    removeBeer(x,y);
+    renderBeer();
+  }
+  if (isThisHome(x,y) && score === 7) {
+    displayWinMessage();
+  }
+  
 };
 
 
 
 
-
-  const movePlayerTo = (x,y) => {
-    const character = document.querySelector('.player');
-    character.style.top = (y * 100).toString() + 'px';
-    character.style.left = (x * 100).toString() + 'px';
-    if (isThereABeer(x,y)) {
-      removeBeer(x,y);
-      renderBeer();
-    }
-     if (isThisHome(x,y) && score === 3) {
-        displayWinMessage();
-      }
-      
-    }
-    
-
- 
     

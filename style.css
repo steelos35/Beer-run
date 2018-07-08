@@ -29,7 +29,7 @@ body {
         background-repeat: no-repeat;
         /* height: 100%;  */
         
-        /* Center and scale the image nicely */
+        /* Center and scale the image nicely */         
         background-position: center center;
         background-size: cover;
         background-attachment: fixed;
@@ -64,6 +64,14 @@ a {
 
 }
 
+/* .directions{
+
+}
+
+
+.restart{
+
+} */
 
 .box {
           background-color: #444;
@@ -75,38 +83,44 @@ a {
         
         
         
-.win-message {
-            /* position: fixed;
-            width: 1400px;
-            top: 150px;
-            background-color: rgba(255,255,255,0.75);
-            font-family: 'Inconsolata', monospace;
-            text-align: center;
-            font: white;
-            font-weight: 700;
-            font-size: 4rem;
-            background-image: url(/Users/albertsalazar/beer-run/images/game-over.png);
-          } */
-        position: relative;
-        width: 100%;
-        height: 800px;
-        background-image: url(/Users/albertsalazar/beer-run/images/game-over.png);
-        background-repeat: no-repeat;
-        background-size: 100% 65%;
+        
+        
+    .win-message { 
+                /* position: fixed;
+                   width: 1400px;
+                   top: 150px;
+                   background-color: rgba(255,255,255,0.75);
+                   font-family: 'Inconsolata', monospace; 
+                   text-align: center;
+                   font: white;
+                   font-weight: 700;
+                   font-size: 4rem;
+                   background-image: url(/Users/albertsalazar/beer-run/images/game-over.png); */
+                 
+               position: absolute;
+               width: 100%;
+               height: 800px;
+               background-image: url(/Users/albertsalazar/beer-run/images/game-over.png);
+               background-repeat: no-repeat;
+               background-size: 100% 65%;
+               left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+               }
+.gameBoard {
+            background: url(/Users/albertsalazar/beer-run/images/street.jpeg);
+            background-repeat: no-repeat;
+            position:relative;
+            width: 1200px;
+            height: 500px;
+            background-color: grey;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
         }
 
-
-.gameBoard {
-        position: relative;
-        width: 500px;
-        height: 500px;
-        background-color: grey;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto
-    }
-    
 .player {
         width: 90px;
         height: 90px;
