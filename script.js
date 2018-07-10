@@ -1,6 +1,11 @@
-const player = {
-  x:0 , y:0
-}
+
+
+//render player and set him on the board
+
+const player = 
+{x:0 , y:0}
+
+
 const renderPlayer = () => {
   const playerElement =  document.createElement('div');
   playerElement.className = 'player';
@@ -13,6 +18,8 @@ const renderPlayer = () => {
 renderPlayer();
 
 
+
+//set the walls as static points on the board
 const walls = [
   {x: 0, y: 3},
   {x: 1, y: 1},
@@ -32,12 +39,11 @@ const walls = [
   {x: 10, y: 2},
   {x: 10, y: 3},
   {x: 11, y: 0},
-  // {x: 11, y: 1},
-  // {x: 11, y: 2},
-  // {x: 11, y: 3},
-  // {x: 11, y: 4},
+  
 ];
 
+
+//render walls and create div for them and set them to read the cells instead of pixels 
 const renderWall = () => {
   for (let i = 0; i < walls.length; i++) {
     const wall = walls[i];
@@ -51,7 +57,7 @@ const renderWall = () => {
 
 renderWall();
 
-
+//set the walls as static points on the board
 const beers = [
   {x: 0, y: 4},
   {x: 3, y: 3},
@@ -63,9 +69,10 @@ const beers = [
 ];
 
 
+//render beers and create div for them and set them to read the cells instead of pixels 
+
 const renderBeer = () => {
   const beerElement =document.querySelectorAll('.beers');
-  console.log
   for (let j = 0; j < beerElement.length; j++) {
     beerElement[j].remove();
     console.log('wooohoo!!')
@@ -83,11 +90,12 @@ const renderBeer = () => {
 
 renderBeer();
 
-
+//set home as static point on the board
 const home = 
-{x:11, y:4 };
+{x:11, y:4};
 
 
+//render home and create div for it and set it to read the cell instead of pixels 
 const renderHome = () => {
   const homeElement =  document.createElement('div');
   homeElement.className = 'home';
@@ -98,7 +106,7 @@ const renderHome = () => {
 renderHome();
 
 
-
+//add an event listener to recognize the key strokes we are using for the game
 document.body.addEventListener('keydown',evt =>{
   const keyCode = evt.keyCode;
   if ([37, 38, 39, 40].includes(keyCode)) {
@@ -122,7 +130,7 @@ document.body.addEventListener('keydown',evt =>{
   }
 })
 
-
+// create instances where the player is allowed to move on the board
 const moveLeft = () => {
   if (canMoveTo(player.x - 1, player.y)) {
     player.x -= 1;
@@ -151,6 +159,7 @@ const moveDown = () => {
 }
 
 
+//set the boundries to the board via cells
 const isCoordinateInGrid = (x,y) => {
   if (x < 0 || y < 0 || x > 11 || y > 4){
     return false;
@@ -160,8 +169,8 @@ const isCoordinateInGrid = (x,y) => {
 }
 
 
+// Loop through rocks, and check if any rock is at the given point.
 const isThereAWall = (x, y) => {
-  // Loop through rocks, and check if any rock is at the given point.
   for (let i = 0; i < walls.length; i++) {
     const wall = walls[i];
     if (wall.x === x && wall.y === y) {
@@ -170,8 +179,8 @@ const isThereAWall = (x, y) => {
   }
   return false;
 };
-// check for beers at the coordinate 
 
+//constraints to the moves of the player, checking the boundries, walls
 const canMoveTo = (x,y) => {
   if (!isCoordinateInGrid(x,y)) {
     return false;
@@ -179,6 +188,8 @@ const canMoveTo = (x,y) => {
   if (isThereAWall(x,y)) {
     return false;
   }
+  //checks if the cell is the home cell and whether the player has collected all beers before 
+  //activating the home cell
   if (isThisHome(x,y) && score < 7) {
     return false;
   }
@@ -186,8 +197,11 @@ const canMoveTo = (x,y) => {
 }
 
 
+//setting the score to zero to be able to use it
 var score = 0;
 
+
+//remove the beers as they are landed on and increment the score
 const removeBeer = (x, y) => {
   for (let i = 0; i < beers.length; i++) {
     const beer = beers[i];
@@ -197,11 +211,11 @@ const removeBeer = (x, y) => {
     score +=1;
       
     }
-  
-    
   }
 };
 
+
+//checking for beers at the cell
 const isThereABeer = (x, y) => {
   for (let i = 0; i < beers.length; i++) {
     const beer = beers[i];
@@ -213,7 +227,7 @@ const isThereABeer = (x, y) => {
   return false;
 };
 
-
+//checking to see if the cell is the one set for home
 const isThisHome = (x,y) => {
   if (home.x === x && home.y === y) {
     removeBeer()
@@ -222,15 +236,12 @@ const isThisHome = (x,y) => {
 }
 
 
-
-
-
-
 const displayWinMessage = () => {
   // Only display one win message.
   if (document.querySelector('.win-message') !== null) {
     return;
   }
+  //create the div for the win message and link it to the gameboard
   const winMessageElement = document.createElement('div');
   winMessageElement.className = 'win-message';
   winMessageElement.innerHTML = '';
@@ -238,6 +249,8 @@ const displayWinMessage = () => {
   console.log('gameover')
 };
 
+//setting arguments checking for movement of the player, token, wining statement and
+//displaying the win message if all areguements are met
 const movePlayerTo = (x,y) => {
   const character = document.querySelector('.player');
   character.style.top = (y * 100).toString() + 'px';
@@ -254,5 +267,3 @@ const movePlayerTo = (x,y) => {
 
 
 
-
-    
