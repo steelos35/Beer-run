@@ -32,3 +32,4 @@ The project was set to be a 5x5 board with some obstacles and tokens to pick up 
 
  This project taught me a-lot about many aspects.  I had to learn to plan effectively and keep assessing the plan and work accordingly.  Also, I had to realize that I cannot do this on my own and that others will have similar problems.  By simply asking I can learn from others and know that I am not the only person with issues that arise.  Researching websites and watching videos provided to be a-lot of help understanding the topics I was having trouble with.  I hope to carry this confidence and knowledge not only to future projects in class but also to wherever I land a job.  And who would of thought that such an insight can come from a silly game.
 
+youtube video at https://youtu.be/oUKi6WSNbAQ
